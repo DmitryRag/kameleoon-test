@@ -1,0 +1,33 @@
+.search-form {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
+    background: #FFFFFF;
+    border: 1px solid #EBEBEB;
+    border-radius: 15px;
+  }
+  
+  .search-form__logo {
+    margin: 15px 11px 16px 13px;
+  }
+  
+  .search-form__input {
+    width: 100%;
+    border: none;
+    outline: none;
+    color: #474747;
+    font-size: 14px;
+    line-height: 16px;
+    font-family: Roboto;
+  }
+  
+  .search-form__value {
+    min-width: 75px;
+    margin-right: 17px;
+    margin-left: auto;
+    text-align: end;
+    font-family: Roboto;
+    font-size: 14px;
+    line-height: 16px;
+    color: #D1D1D1;
+  }

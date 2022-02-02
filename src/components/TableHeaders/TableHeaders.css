@@ -1,0 +1,42 @@
+.table-headers {
+    display: flex;
+    padding: 0 12px 10px 15px;
+    font-family: 'Roboto';
+}
+  
+.table-header__name {
+    margin: 0;
+    font-size: 11px;
+    line-height: 13px;
+    color: #999999;
+    margin-right: 2.7%;
+    width: 42%;
+}
+  
+.table-header__type {
+    margin: 0;
+    font-size: 11px;
+    line-height: 13px;
+    color: #999999;
+    width: 10.79%;
+    margin-right: 2.7%;
+}
+  
+.table-header__status {
+    margin: 0;
+    font-size: 11px;
+    line-height: 13px;
+    color: #999999;
+    width: 6.69%;
+    margin-right: 2%;
+}
+  
+.table-header__url {
+    margin: 0;
+    font-size: 11px;
+    line-height: 13px;
+    color: #999999;
+    margin-right: 3.47%;
+    margin-left: 3.83%;
+    width: 12.62%;
+}
