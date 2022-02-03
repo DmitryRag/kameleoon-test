@@ -1,17 +1,17 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import classNames from 'classnames'
 import './Card.css'
 
-export default function Card({ name, type, status, siteId, key, id }) {
+export default function Card({ name, type, status, siteId, id, setName }) {
 
-    var url
+    var site
     if (siteId === 1) {
-        url = 'market.company.com'
+        site = 'market.company.com'
     } else if (siteId === 2) {
-        url = 'delivery.company.com'
+        site = 'delivery.company.com'
     } else {
-        url = 'games.company.com'
+        site = 'games.company.com'
     }
 
     var types = type
@@ -47,18 +47,31 @@ export default function Card({ name, type, status, siteId, key, id }) {
         }
     )
 
+    function addName() {
+        setName(name);
+    }
+
     return (
         <div className={cardClass}>
             <div className='card__name'>{name}</div>
             <div className='card__type'>{types}</div>
             <div className={statusClass}>{statuses}</div>
-            <div className='card__url'>{url}</div>
-            <Link
-            className={btnClass}
-            to={`/results/${id}`}
-            key={id}
-            />
+            <div className='card__url'>{site}</div>
+            {statuses === 'Draft' ? 
+                <Link
+                    className={btnClass}
+                    to={`/finalize/${id}`}
+                    key={id}
+                    onClick={addName}
+                />
+            :
+                <Link
+                    className={btnClass}
+                    to={`/results/${id}`}
+                    key={id}
+                    onClick={addName}
+                />
+            }
         </div>
-
     )
 }

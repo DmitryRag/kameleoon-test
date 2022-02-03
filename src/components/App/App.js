@@ -1,34 +1,23 @@
 import React, { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import axios from 'axios'
-import Card from '../Card/Card'
 import Preloader from '../Preloader/Preloader'
-import SearchForm from '../SearchForm/SearchForm'
-import SearchFormError from '../SearchFormError/SearchFormError'
-import TableHeaders from '../TableHeaders/TableHeaders'
 import Results from '../Results/Results'
 import Finalize from '../Finalize/Finalize'
+import SearchForm from '../SearchForm/SearchForm'
+import TableHeaders from '../TableHeaders/TableHeaders'
+import Card from '../Card/Card'
+import SearchFormError from '../SearchFormError/SearchFormError'
 import './App.css'
-import { testss } from '../data'
 
 export default function App() {
-    const [sites, setSites] = useState([])
-    const [tests, setTests] = useState(testss)
+    const [tests, setTests] = useState([])
     const [directionSort, setDirectionSort] = useState(true)
     const [searchValue, setSearchValue] = useState('')
     const [isLoaded, setIsLoaded] = useState(false)
+    const [nameCard, setNameCard] = useState('')
 
-    const getSites = async () => {
-        axios.get(`http://localhost:3100/sites`)
-            .then(res => {
-                setSites(res.data)
-            })
-            .catch(error => {
-                console.log(error, 'ошибка запроса')
-            })
-    }
-
-    /* const getTests = async () => {
+    const getTests = async () => {
         axios.get(`http://localhost:3100/tests`)
             .then(res => {
                 setTests(res.data)
@@ -36,7 +25,17 @@ export default function App() {
             .catch(error => {
                 console.log(error, 'ошибка запроса')
             })
-    } */
+    }
+
+    useEffect(() => {
+        getTests()
+    }, [])
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsLoaded(true)
+        }, 500)
+    })
 
     function sortData(field) {
         const copyData = tests.concat()
@@ -71,8 +70,30 @@ export default function App() {
         setDirectionSort(!directionSort)
     }
 
+    function sortSiteData(field) {
+        const copyData = tests.concat()
+        let draftData = copyData.filter(item => item.siteId == 1)
+        let noneDraftData = copyData.filter(item => item.siteId !== 1)
+        let preSortData = noneDraftData.sort((a, b) => {
+            return a[field] > b[field] ? 1 : -1
+        })
+        let sortData
+        if (directionSort) {
+            sortData = [...preSortData, ...draftData]
+        } else {
+            let reverseData = noneDraftData.reverse()
+            sortData = [...draftData, ...reverseData]
+        }
+        setTests(sortData)
+        setDirectionSort(!directionSort)
+    }
+
+    function setName(name) {
+        setNameCard(name);
+    }
+
     const filteredDashboard = tests.filter(tests => {
-        return tests.name.toLowerCase().includes(searchValue.toLocaleLowerCase())
+        return tests.name.toLowerCase().includes(searchValue.toLocaleLowerCase().trim())
     })
 
     function changeSearchInput(e) {
@@ -84,22 +105,14 @@ export default function App() {
         setSearchValue('')
     }
 
-    useEffect(() => {
-        getSites()
-        /* getTests() */
-    }, [])
-
-    useEffect(() => {
-        setTimeout(() => {
-            setIsLoaded(true)
-        }, 500)
-    })
-
     return (
         <div>
             <Routes>
-                <Route path="results" element={<Results />}>
-                    <Route path=":invoiceId" element={<Results data={tests}/>} />
+                <Route path="results" element={<Results nameCard={nameCard}/>}>
+                    <Route path=":testId" element={<Results />} />
+                </Route> 
+                <Route path="finalize" element={<Finalize nameCard={nameCard}/>}>
+                    <Route path=":testId" element={<Finalize />} />
                 </Route>  
                 <Route path='/' element={
                     <div className='App'>
@@ -114,6 +127,7 @@ export default function App() {
                             <TableHeaders
                                 sortData={sortData}
                                 sortStatusData={sortStatusData}
+                                sortSiteData={sortSiteData}
                             />
                         ) : (
                             null
@@ -126,6 +140,7 @@ export default function App() {
                                 siteId={tests.siteId}
                                 key={tests.id}
                                 id={tests.id}
+                                setName={setName}
                             />
                         ))}
                         {isLoaded && (filteredDashboard.length < 1 &&
@@ -135,10 +150,6 @@ export default function App() {
                         )}
                     </div>}
                 />
-
-
-                  
-
             </Routes>
         </div>
     )

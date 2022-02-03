@@ -1,6 +1,7 @@
 import './Preloader.css'
 
-function Preloader() {
+export default function Preloader() {
+
     return (
         <div className='preloader'>
             <div className='preloader__container'>
@@ -9,5 +10,3 @@ function Preloader() {
         </div>
     )
 }
-
-export default Preloader

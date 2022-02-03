@@ -1,7 +1,7 @@
 .table-headers {
     display: flex;
     padding: 0 12px 10px 15px;
-    font-family: 'Roboto';
+    font-family: 'Roboto', sans-serif;
 }
   
 .table-header__name {
@@ -11,6 +11,7 @@
     color: #999999;
     margin-right: 2.7%;
     width: 42%;
+    cursor: pointer;
 }
   
 .table-header__type {
@@ -20,6 +21,7 @@
     color: #999999;
     width: 10.79%;
     margin-right: 2.7%;
+    cursor: pointer;
 }
   
 .table-header__status {
@@ -29,6 +31,7 @@
     color: #999999;
     width: 6.69%;
     margin-right: 2%;
+    cursor: pointer;
 }
   
 .table-header__url {
@@ -39,4 +42,5 @@
     margin-right: 3.47%;
     margin-left: 3.83%;
     width: 12.62%;
+    cursor: pointer;
 }

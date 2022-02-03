@@ -1,0 +1,49 @@
+.finalize {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100vh;
+}
+
+.finalize__content {
+    padding-top: 41px;
+    padding-left: 48px;
+}
+
+.finalize__title {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 26px;
+    line-height: 32px;
+    color: #222222;
+}
+
+.finalize__subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 20px;
+    color: #222222;
+    margin-top: 4px;
+}
+
+.finalize__btn {
+    position: fixed;
+    left: 49px;
+    bottom: 49px;
+    text-decoration: none;
+    font-family: 'Nunito', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 25px;
+    color: #222222;
+    display: flex;
+    flex-direction: row;
+}
+
+.finalize__btn_text {
+    margin-left: 19px;
+}

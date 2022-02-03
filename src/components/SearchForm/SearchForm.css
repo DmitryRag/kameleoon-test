@@ -5,29 +5,32 @@
     background: #FFFFFF;
     border: 1px solid #EBEBEB;
     border-radius: 15px;
-  }
+}
   
-  .search-form__logo {
+.search-form__logo {
     margin: 15px 11px 16px 13px;
-  }
+}
   
-  .search-form__input {
+.search-form__input {
     width: 100%;
     border: none;
     outline: none;
     color: #474747;
     font-size: 14px;
     line-height: 16px;
-    font-family: Roboto;
-  }
+    font-family: 'Roboto', sans-serif;
+}
   
-  .search-form__value {
+.search-form__value {
     min-width: 75px;
     margin-right: 17px;
     margin-left: auto;
     text-align: end;
-    font-family: Roboto;
+    font-family: 'Roboto', sans-serif;
     font-size: 14px;
     line-height: 16px;
     color: #D1D1D1;
-  }
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}

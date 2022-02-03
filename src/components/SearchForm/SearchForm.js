@@ -3,6 +3,7 @@ import searchlogo from '../../images/search_logo.svg'
 import './SearchForm.css'
 
 export default function SearchForm({value, onChange, filteredDashboard}) {
+    
     return (
         <div>
             <form className='search-form'>
